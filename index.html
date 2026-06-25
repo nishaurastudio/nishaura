@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NishAura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="cart">
+    🛒 Cart (<span id="cart-count">0</span>)
+</div>
+    <h1>Welcome to NishAura</h1>
+    <p>Original Handmade Paintings</p>
+</header>
+<div id="cart-box" style="display:none; background:white; padding:20px; margin:20px; border-radius:10px;">
+    <h3>🛒 Shopping Cart</h3>
+    <p id="cart-items">No items added yet</p>
+    <button onclick="checkout()">Checkout</button>
+</div>
+<div id="cart-box" style="display:none;">
+    <h2>Your Cart</h2>
+    <p id="cart-items">No items added yet.</p>
+    <button onclick="checkout()">Checkout</button>
+</div>
+<div class="card">
+<img src="painting1.jpeg" alt="Painting">
+    <h3>Whispers of Spring</h3>
+    <p>₹8999</p>
+    <button onclick="addToCart()">Add to Cart</button>
+</div>
+<div class="card">
+    <img src="painting2.jpeg" alt="Painting">
+    <h3>Sunset Dreams</h3>
+    <p>₹7999</p>
+
+    <button onclick="addToCart()">Add to Cart</button>
+</div>
+<a href="https://wa.me/919911750287" class="whatsapp-btn" target="_blank">
+    💬 Chat with Artist
+</a>
+<script>
+let cartCount = 0;
+
+function addToCart() {
+    cartCount++;
+    document.getElementById("cart-count").innerText = cartCount;
+
+    document.getElementById("cart-box").style.display = "block";
+
+    document.getElementById("cart-items").innerText =
+        cartCount + " painting(s) added to cart";
+}
+
+
+function checkout() {
+   alert("Proceeding to checkout...");
+}
+
+</script>
+<section class="about">
+    <h2>About NishAura</h2>
+
+    <p>
+        Welcome to NishAura, where creativity meets emotion.
+        Each painting is handcrafted with passion, inspired by nature,
+        imagination, and the beauty of everyday life.
+    </p>
+
+    <p>
+        Custom paintings and commissioned artwork are also available.
+    </p>
+</section>
+</body>
+</html>
