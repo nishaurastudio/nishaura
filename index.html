@@ -27,13 +27,13 @@
 <div class="card">
 <img src="painting1.jpeg" alt="Painting">
     <h3>Whispers of Spring</h3>
-    <p>₹8999</p>
+    <p>₹2</p>
     <button onclick="addToCart()">Add to Cart</button>
 </div>
 <div class="card">
     <img src="painting2.jpeg" alt="Painting">
     <h3>Sunset Dreams</h3>
-    <p>₹7999</p>
+    <p>₹4</p>
 
     <button onclick="addToCart()">Add to Cart</button>
 </div>
@@ -61,7 +61,7 @@ async function checkout() {
         return;
     }
 
-    const amount = 8999;
+    const amount = 2;
 
     const orderResponse = await fetch("/api/create-order", {
         method: "POST",
