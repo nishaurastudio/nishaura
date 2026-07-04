@@ -3,6 +3,7 @@
 <head>
     <title>NishAura</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -53,8 +54,63 @@ function addToCart() {
 }
 
 
-function checkout() {
-   alert("Proceeding to checkout...");
+async function checkout() {
+
+    if (cartCount === 0) {
+        alert("Please add a painting to cart first.");
+        return;
+    }
+
+    const amount = 8999;
+
+    const orderResponse = await fetch("/api/create-order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            amount: amount
+        })
+    });
+
+    const order = await orderResponse.json();
+
+    const options = {
+        key: "YOUR_RAZORPAY_KEY_ID",
+        amount: order.amount,
+        currency: order.currency,
+        name: "NishAura",
+        description: "Painting Purchase",
+        order_id: order.id,
+
+        handler: async function (response) {
+
+            const verify = await fetch("/api/verify-payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(response)
+            });
+
+            const result = await verify.json();
+
+            if (result.success) {
+                alert("✅ Payment Successful");
+            } else {
+                alert("❌ Payment Verification Failed");
+            }
+
+        },
+
+        theme: {
+            color: "#000000"
+        }
+
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
 }
 
 </script>
